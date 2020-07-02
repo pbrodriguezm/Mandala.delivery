@@ -1,0 +1,31 @@
+<svg id="appbar" width="0" height="0" viewBox="0 0 80 36" xmlns="http://www.w3.org/2000/svg">
+    <clipPath id="appbar__cutout">
+      <path d="M36 36 C 56 36 72 20 72.5 0 V 112 H 0 V 0 C 0 20 16 36 36 36 Z" />
+    </clipPath>
+  </svg>
+
+
+<div class="appbar appbar-bottom" [class.appbar-bottom-no-fab]="noFab" [class.appbar-bottom-center]="normalCenterFab" [class.appbar-bottom-center-inset]="insetCenterFab" [class.appbar-bottom-right-end]="normalRightEndFab" [class.appbar-bottom-right-end-inset]="insetRightEndFab"
+    [class.appbar-bottom-flat]="flat">
+    <ng-container *ngIf="fabPosition !== 'NONE'">
+        <div class="appbar-bottom-fab" [class.appbar-bottom-fab-right-end]="rightEndFab" [class.appbar-bottom-fab-left-end]="leftEndFab">
+            <ng-container *ngIf="fabArea; then fabArea;"></ng-container>
+        </div>
+    </ng-container>
+
+    <div class="appbar-bottom-normal" [class.appbar-bottom-primary]="color === 'primary'" [class.appbar-bottom-accent]="color === 'accent'" [class.appbar-bottom-warn]="color === 'warn'">
+        <div class="appbar-bottom-actions" *ngIf="leftSideActions">
+            <ng-container *ngIf="leftSideActions; then leftSideActions;"></ng-container>
+        </div>
+    </div>
+
+    <div class="appbar-bottom-cutout" [class.appbar-bottom-primary]="color === 'primary'" [class.appbar-bottom-accent]="color === 'accent'" [class.appbar-bottom-warn]="color === 'warn'" *ngIf="inset && !noFab">
+
+    </div>
+
+    <div class="appbar-bottom-normal flex-right" [class.appbar-bottom-primary]="color === 'primary'" [class.appbar-bottom-accent]="color === 'accent'" [class.appbar-bottom-warn]="color === 'warn'" *ngIf="isCenteredOrInsetRightBar">
+        <div class="appbar-bottom-actions" *ngIf="rightSideActions && !rightEndFab">
+            <ng-container *ngIf="rightSideActions; then rightSideActions;"></ng-container>
+        </div>
+    </div>
+</div>

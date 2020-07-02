@@ -1,0 +1,61 @@
+agm-map {
+    height: 90vh
+}
+
+.bg-dark {
+    background: linear-gradient(-45deg, #e73c7e, #782beb, #492D46);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.toolbarNav {
+    color: white;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    padding: 2em;
+    background-color: #782beb;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+    -moz-box-shadow: 3px 3px 5px 6px #ccc;
+    /* Firefox 3.5 - 3.6 */
+    box-shadow: 2px 2px 4px 5px #ccc;
+    /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+.material-icons.color_blue:hover {
+    color: #F42DDF;
+    cursor: pointer;
+}
+
+.mat-flat-button.mat-accent,
+.mat-raised-button.mat-accent,
+.mat-fab.mat-accent,
+.mat-mini-fab.mat-accent {
+    background-color: white;
+}
+
+#footer {
+    position: fixed;
+    bottom: 5rem;
+    right: 3.5rem;
+}
+
+#map {
+    height: 90vh;
+    width: 100%;
+}

@@ -1,0 +1,8 @@
+:host {
+    position: relative;
+    z-index: 1;
+}
+
+.flex-right {
+    justify-content: flex-end;
+}

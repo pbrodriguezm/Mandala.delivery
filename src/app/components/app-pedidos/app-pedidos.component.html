@@ -1,0 +1,73 @@
+<nav class="navbar navbar-light bg-dark justify-content-between" style="background-color: #782beb;">
+    <a class="navbar-brand"><img src="../../../assets/images/logo_blanco.png" height="28px"></a>
+    <div>
+        <input id="pac-input" class="form-control" (keydown.enter)="$event.preventDefault()" class="form-control mr-sm-2" type="search" type="text" placeholder="Lugar de referencia" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control"
+            #search>
+
+    </div>
+</nav>
+
+
+<div id="map"></div>
+
+
+<mat-spinner *ngIf="!cargando" id="footer"></mat-spinner>
+
+<button type="button" class="btn btn-warning  btn-lg" id="footer" type="button" *ngIf="directionsDisplay.directions != undefined">
+   <div *ngIf="cargarMonto()"> S/{{totalsuma | number:'1.2-2'}} </div> 
+    
+    <span class="badge badge-light">{{directionsDisplay.directions.routes[0].legs[0].distance.value/1000 | number:'1.2-2'}} km</span>
+  </button>
+
+
+
+<mat-toolbar class="toolbarNav">
+
+    <div (click)="openBottomSheet()">
+        <div class="d-flex justify-content-center">
+            <mat-icon class="material-icons color_blue">
+                supervisor_account</mat-icon>
+        </div>
+        <div style="font-size: 10px;
+        margin-bottom: -5px;
+        margin-top: -10px;">Clientes</div>
+    </div>
+
+
+    <div (click)="solicitarMotorizado()" style="font-size: 15px;">
+        <div class="d-flex justify-content-center">
+            <mat-icon class="material-icons color_blue">
+                add_circle_outline</mat-icon>
+        </div>
+        <div style="
+        margin-bottom: -5px;
+        margin-top: -8px; ">Pedido Marcado</div>
+    </div>
+
+    <div (click)="solicitarMotorizado()" style="font-size: 15px;">
+        <div class="d-flex justify-content-center">
+            <mat-icon>offline_bolt</mat-icon>
+        </div>
+        <div style="
+        margin-bottom: -5px;
+        margin-top: -8px; ">Pedido Simple</div>
+    </div>
+
+
+
+
+    <div>
+        <div class="d-flex justify-content-center">
+            <mat-icon class="material-icons color_blue">
+                history</mat-icon>
+        </div>
+        <div style="font-size: 10px;
+        margin-bottom: -5px;
+        margin-top: -10px;">Historial</div>
+    </div>
+
+
+
+
+
+</mat-toolbar>
