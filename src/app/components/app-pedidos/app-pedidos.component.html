@@ -1,11 +1,52 @@
 <nav class="navbar navbar-light bg-dark justify-content-between" style="background-color: #782beb;">
-    <a class="navbar-brand"><img src="./../../../assets/images/logo_blanco.png" height="28px"></a>
-    <div>
-        <input id="pac-input" class="form-control" (keydown.enter)="$event.preventDefault()" class="form-control mr-sm-2" type="search" type="text" placeholder="Lugar de referencia" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control"
-            #search>
+    <a class="navbar-brand"><img src="./../../../assets/images/logo_blanco.png" style="width: 80px;"></a>
+    <div class="d-flex justify-content-end">
 
+        <div>
+
+            <b><span style="font-size: 14px; color: white;">
+          
+            <span class="movil" style="margin-top: -5px;"> 
+                <div>  <sub><mat-icon>perm_identity</mat-icon></sub>
+                    {{appClientes.nombre}}
+                <span class="d-flex justify-content-end " style="display: block; font-size:9px; margin-bottom: -5px;
+                margin-top: -5px;">{{appClienteLocalSelect.nombre}}</span>
+                </div>
+            </span>
+        </span></b>
+        </div>
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="opciones">
+        <mat-icon style="color: white;" >more_vert</mat-icon>
+      </button>
+        <mat-menu #menu="matMenu">
+            <button (click)="seleccionarLocal(appClienteLocal)" *ngFor="let appClienteLocal of appClienteLocales" mat-menu-item>
+                <mat-icon>store</mat-icon>
+            <span>{{appClienteLocal.nombre}}</span>
+            </button>
+
+
+            <mat-divider></mat-divider>
+            <button (click)="cerrarSesion()" mat-menu-item>
+            <mat-icon>exit_to_app</mat-icon>
+        <span>Cerrar sesión</span>
+        </button>
+        </mat-menu>
     </div>
 </nav>
+
+
+<div class="pac-card" id="pac-card">
+    <div>
+        <div id="title">
+            Referencia de destino a entregar
+        </div>
+    </div>
+    <div id="pac-container">
+        <input style="width: 96vw;" id="pac-input" (keydown.enter)="$event.preventDefault()" type="search" type="text" placeholder="Ejem: Comisaria yanahuara" autocorrect="off" autocapitalize="off" spellcheck="off" class="form-control" #search>
+    </div>
+</div>
+
 
 
 <div id="map"></div>
@@ -15,7 +56,8 @@
 
 <button type="button" class="btn btn-warning  btn-lg" id="footer" type="button" *ngIf="directionsDisplay.directions != undefined">
    <div *ngIf="cargarMonto()"> S/{{totalsuma | number:'1.2-2'}} </div> 
-    
+   <div style="font-size: 10px; color: dimgray;    margin-bottom: -15px;" *ngIf="cargarMonto()"><mat-icon  style="font-size: 10px;margin-right: -7px;" >alarm</mat-icon> {{tiempollegada}} </div> 
+   
     <span class="badge badge-light">{{directionsDisplay.directions.routes[0].legs[0].distance.value/1000 | number:'1.2-2'}} km</span>
   </button>
 
@@ -23,7 +65,7 @@
 
 <mat-toolbar class="toolbarNav">
 
-    <div (click)="openBottomSheet()">
+    <div style="cursor: pointer;" (click)="openBottomSheet()">
         <div class="d-flex justify-content-center">
             <mat-icon class="material-icons color_blue">
                 supervisor_account</mat-icon>
@@ -34,29 +76,29 @@
     </div>
 
 
-    <div (click)="solicitarMotorizado()" style="font-size: 15px;">
+    <div (click)="solicitarMotorizado()" style="font-size: 0.6em;cursor: pointer;">
         <div class="d-flex justify-content-center">
             <mat-icon class="material-icons color_blue">
                 add_circle_outline</mat-icon>
         </div>
         <div style="
         margin-bottom: -5px;
-        margin-top: -8px; ">Pedido Marcado</div>
+        margin-top: -8px; ">Pedir Driver</div>
     </div>
 
-    <div (click)="solicitarMotorizado()" style="font-size: 15px;">
+    <div (click)="solicitarMotorizado()" style="font-size: 0.6em;cursor: pointer;">
         <div class="d-flex justify-content-center">
             <mat-icon>offline_bolt</mat-icon>
         </div>
         <div style="
         margin-bottom: -5px;
-        margin-top: -8px; ">Pedido Simple</div>
+        margin-top: -8px; ">Driver Simple</div>
     </div>
 
 
 
 
-    <div>
+    <div (click)="historialPedidos()" style="cursor: pointer;">
         <div class="d-flex justify-content-center">
             <mat-icon class="material-icons color_blue">
                 history</mat-icon>
@@ -66,8 +108,7 @@
         margin-top: -10px;">Historial</div>
     </div>
 
-
-
-
-
 </mat-toolbar>
+
+
+<!-- Modal -->

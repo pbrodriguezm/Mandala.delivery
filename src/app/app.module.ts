@@ -9,8 +9,12 @@ import { AppPedidosComponent } from './components/app-pedidos/app-pedidos.compon
 import {GoogleMapsModule} from '@angular/google-maps';
 import { AgmCoreModule } from '@agm/core'; 
 import { AgmDirectionModule } from 'agm-direction';
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
  
+import { ToastrModule } from 'ngx-toastr';
 
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -52,6 +56,25 @@ import { PuntosComponent } from './components/app-pedidos/puntos/puntos.componen
 import { ClientesComponent } from './components/app-pedidos/clientes/clientes.component';
 
 
+//models propios
+import { Configuration } from './configuration';
+import { AppCfinalService } from './api/appCfinal.service';
+import { AppClienteLocalesService } from './api/appClienteLocales.service';
+import { AppClientesService } from './api/appClientes.service';
+import { AppDmarcacionesService } from './api/appDmarcaciones.service';
+import { AppDriversService } from './api/appDrivers.service';
+import { AppEstadoService } from './api/appEstado.service';
+import { AppMetodopagoService } from './api/appMetodopago.service';
+import { AppServiciosService } from './api/appServicios.service';
+import { AppUnidadService } from './api/appUnidad.service';
+import { AppUsersService } from './api/appUsers.service';
+import { IntrospectionService } from './api/introspection.service';
+import { LoginComponent } from './components/login/login.component';
+import { SolicitarComponent } from './components/app-pedidos/solicitar/solicitar.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { HistorialComponent } from './components/app-pedidos/historial/historial.component';
+
+
 
 @NgModule({
   declarations: [
@@ -60,11 +83,17 @@ import { ClientesComponent } from './components/app-pedidos/clientes/clientes.co
     BottomBarComponent,
     PuntosComponent,
     ClientesComponent,
+    LoginComponent,
+    SolicitarComponent,
+    HistorialComponent
 
-   
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ToastrModule.forRoot(),
+    HttpClientModule,
+    MatFormFieldModule,
     AgmCoreModule.forRoot({ // @agm/core
       apiKey: 'AIzaSyDrNEY8RsIuCLxvKRdKdGKb2PwuE4me6VQ',
       language: 'es',
@@ -113,7 +142,19 @@ import { ClientesComponent } from './components/app-pedidos/clientes/clientes.co
     
 
   ],
-  providers: [],
+  providers: [
+    AppCfinalService,
+    AppClienteLocalesService,
+    AppClientesService,
+    AppDmarcacionesService,
+    AppDriversService,
+    AppEstadoService,
+    AppMetodopagoService,
+    AppServiciosService,
+    AppUnidadService,
+    AppUsersService,
+    IntrospectionService 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

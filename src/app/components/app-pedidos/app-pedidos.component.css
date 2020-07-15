@@ -56,6 +56,174 @@ agm-map {
 }
 
 #map {
-    height: 90vh;
+    height: 83vh;
     width: 100%;
+}
+
+.pac-card {
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+    position: fixed;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+#pac-container {
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+}
+
+.pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+#pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+}
+
+#pac-input:focus {
+    border-color: #60549f;
+}
+
+#title {
+    color: #fff;
+    background-color: #585858;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 6px 12px;
+}
+
+#description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+#infowindow-content .title {
+    font-weight: bold;
+}
+
+#infowindow-content {
+    display: none;
+}
+
+#map #infowindow-content {
+    display: inline;
+}
+
+@media (max-width: 500px) {
+    .toolbarNav {
+        color: white;
+        position: fixed;
+        bottom: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        padding: 1em;
+        background-color: #782beb;
+        -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+        /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+        -moz-box-shadow: 3px 3px 5px 6px #ccc;
+        /* Firefox 3.5 - 3.6 */
+        box-shadow: 2px 2px 4px 5px #ccc;
+        /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+    }
+    #map {
+        height: 89vh;
+        width: 100%;
+    }
+    #footer {
+        position: fixed;
+        bottom: 3.5rem;
+        left: 0rem;
+    }
+}
+
+@media (max-width:320px) {
+    #map {
+        height: 100vh;
+        width: 100%;
+    }
+    .pac-card {
+        opacity: 0.7;
+    }
+    .toolbarNav {
+        background-color: #817777
+    }
+    #footer {
+        position: fixed;
+        bottom: 3rem;
+        left: 0rem;
+    }
+    .movil {
+        display: none;
+        color: red;
+    }
+}
+
+@media (max-width:768px) {
+    #map {
+        height: 90vh;
+        width: 100%;
+    }
+}
+
+@media (max-width:1280px) {
+    #map {
+        height: 90vh;
+        width: 100%;
+    }
+    #footer {
+        position: fixed;
+        bottom: 3rem;
+        left: 0rem;
+    }
+}
+
+@media (max-width:1600px) {
+    #map {
+        height: 91vh;
+        width: 100%;
+    }
+    #footer {
+        position: fixed;
+        bottom: 5rem;
+        left: 0rem;
+    }
+}
+
+
+/*toaste espera*/
+
+.ngx-toastr {
+    position: relative;
+    overflow: hidden;
+    margin: 0 0 6px;
+    padding: 15px 15px 15px 50px;
+    width: 300px;
+    border-radius: 3px 3px 3px 3px;
+    background-position: 15px center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    box-shadow: 0 0 12px #999999;
 }

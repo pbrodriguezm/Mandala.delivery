@@ -1,0 +1,96 @@
+<h2 mat-dialog-title>Historial de pedidos</h2>
+
+<div class="row">
+
+    <div class="col">
+        <mat-form-field style="width: 50%;" color="accent" appearance="fill">
+            <mat-label>Desde que fecha</mat-label>
+            <input [(ngModel)]="fechaFiltro" autocomplete="off" matInput [matDatepicker]="picker2" (dateInput)="cargarReporteVentas()" (dateChange)="cargarReporteVentas()">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 color="primary"></mat-datepicker>
+        </mat-form-field>
+
+    </div>
+
+
+    <div class="col">
+        <mat-slide-toggle>Deseo recibir reporte diario (email) </mat-slide-toggle>
+
+
+    </div>
+
+
+
+</div>
+
+<mat-dialog-content class="mat-typography">
+    <table style="width: 100%;" mat-table [dataSource]="dataServicios" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="codigo">
+            <th mat-header-cell *matHeaderCellDef> COD. </th>
+            <td mat-cell *matCellDef="let element"> #P-0{{element.idservicio}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="cliente">
+            <th mat-header-cell *matHeaderCellDef> Cliente </th>
+            <td mat-cell *matCellDef="let element"> {{element.app_cfinal.nombre}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="distancia">
+            <th mat-header-cell *matHeaderCellDef> Distancia </th>
+            <td style="color: dimgray;" mat-cell *matCellDef="let element"> {{element.distancia | number:'1.2-2' }} km</td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef> Monto </th>
+            <td style="color: dimgray;" mat-cell *matCellDef="let element"> S/ {{element.costototal | number:'1.2-2'}} </td>
+        </ng-container>
+
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="controlhora">
+            <th mat-header-cell *matHeaderCellDef> Recogido | Entregado </th>
+            <td style="color: dimgray;" mat-cell *matCellDef="let element"> {{element.fechahorainicio | date:'shortTime'}} <i class="far fa-clock"></i> {{element.fechahorallegada | date:'shortTime'}} </td>
+        </ng-container>
+
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let element"> {{element.app_estado.nombre}}
+            </td>
+        </ng-container>
+
+
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element">
+                <button *ngIf="element.app_estado.idestado == 8" type="button" class="btn btn-outline-danger btn-sm">Anular</button>
+
+                <span *ngIf="element.app_estado.idestado == 9"><i class="fas fa-shipping-fast"></i></span>
+                <span *ngIf="element.app_estado.idestado == 6"><i class="fas fa-people-carry"></i></span>
+                <span *ngIf="element.app_estado.idestado == 5"> <i class="fas fa-directions"></i></span>
+
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div class="d-flex justify-content-center" style="font-size: 18px; color: dimgray; margin-top: 15px;" *ngIf="dataServicios.length==0">
+        <span> <i class="far fa-frown-open"></i> No tenemos pedidos para esta fecha</span> </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <button mat-button mat-dialog-close (click)="exportAsExcelFile(dataServicios,'Reporte_mandala')"><i class="fas fa-file-excel"></i> Descargar</button>
+
+</mat-dialog-actions>

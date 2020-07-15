@@ -1,0 +1,81 @@
+<h2 mat-dialog-title>
+    Información de el cliente</h2>
+<mat-dialog-content class="mat-typography">
+    <div class="row">
+        <div class="col-md-6">
+
+
+            <mat-form-field style="width: 100%" appearance="fill">
+                <mat-label>Celular de cliente</mat-label>
+                <input autocomplete="off" [(ngModel)]="appCfinal.idcfinal" name="idcfinal" matInput #input maxlength="10" placeholder="9xxxx" (focusout)="verificarCliente()" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+            </mat-form-field>
+
+
+        </div>
+        <div class="col-md-6">
+            <mat-form-field style="width: 100%" appearance="fill">
+                <mat-label>Nombre de cliente</mat-label>
+                <input autocomplete="off" [(ngModel)]="appCfinal.nombre" name="nombre" matInput>
+            </mat-form-field>
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <mat-form-field style="width: 100%" appearance="fill">
+                <mat-label>Dirección</mat-label>
+                <input autocomplete="off" matInput [(ngModel)]="appCfinal.direccion" name="direccion">
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field style="width: 100%" appearance="fill">
+                <mat-label>Referencia</mat-label>
+                <input autocomplete="off" matInput placeholder="casa de color verde" [(ngModel)]="appCfinal.referencia" name="referencia">
+                <mat-hint>Orientación al driver</mat-hint>
+            </mat-form-field>
+
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <mat-form-field appearance="fill">
+                <mat-label>Método de pago</mat-label>
+                <mat-select [(ngModel)]="data.appServicio.metodopago">
+                    <mat-option value="EFEC" selected>Efectivo</mat-option>
+                    <mat-option value="TARJ">Tarjeta</mat-option>
+
+                </mat-select>
+
+            </mat-form-field>
+
+        </div>
+
+        <div class="col-md-6">
+            <mat-form-field style="width: 100%" appearance="fill">
+                <mat-label>Pagará con S/. </mat-label>
+                <input autocomplete="off" matInput placeholder="S/. __.__" [(ngModel)]="data.appServicio.drivercomentario">
+                <mat-hint>En caso de requerir vuelto</mat-hint>
+            </mat-form-field>
+
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button mat-button color="primary" (click)="closeDialog();" cdkFocusInitial>Solicitar</button>
+</mat-dialog-actions>
