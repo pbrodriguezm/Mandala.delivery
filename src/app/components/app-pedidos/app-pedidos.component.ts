@@ -24,6 +24,7 @@ import { AppClientesService, AppClienteLocalesService, AppServiciosService, AppC
 import { MatDialog } from '@angular/material/dialog';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { HistorialComponent } from './historial/historial.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'mat-bottom-bar',
@@ -39,6 +40,7 @@ export class AppPedidosComponent implements OnInit {
   constructor(private _bottomSheet: MatBottomSheet,
     protected appClientesService:AppClientesService,
     protected appCfinalService:AppCfinalService,
+    private _snackBar: MatSnackBar,
     protected appClienteLocalesService:AppClienteLocalesService,
     protected appServiciosService:AppServiciosService,
     private router: Router,
@@ -322,7 +324,14 @@ createMarker(latlng, title, drag, ico) {
 
 
 openBottomSheet(): void {
-  this._bottomSheet.open(ClientesComponent);
+  this._bottomSheet.open(ClientesComponent,{
+    data: {appClienteLocale: this.appClienteLocalSelect,  appServicio: this.appServicio}
+  });
+
+
+
+
+  
   
 }
 
@@ -370,6 +379,29 @@ solicitarMotorizado(){
   //alert('Motorizado en camino... Juan Alberto Placa EHS-541, llegara en 12 minutos aprox.')
 }
 
+
+
+solicitarMotorizadoRapido(){
+  let appServicios:AppServicios={
+    idlocal: this.appClienteLocalSelect.idlocal,
+    idcliente: this.appClienteLocalSelect.idcliente,
+    idcfinal: '123',
+
+  }
+  
+ this.appServiciosService.appServiciosPost(appServicios,null,'return=representation').subscribe(response => {
+    this.openSnackBar('Solicitud de driver realizada','Cerrar');
+ });
+}
+
+openSnackBar(texto, titulo) {
+  this._snackBar.open(texto, titulo, {
+
+    duration: 900,
+    horizontalPosition: 'start',
+    verticalPosition: 'bottom'
+  });
+}
 
 
 /*
@@ -432,7 +464,7 @@ guardarServicio(){
     
 
     this.toastr.clear();
-    this.appServiciosService.appServiciosGet(null,null,'eq.'+this.appClienteLocalSelect.idlocal,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'idservicio,idestado,tiempoval,fechahorarecojo,costoentrega,app_cfinal(nombre)&idestado=eq.9 or idestado=eq.8 ').subscribe(data => {
+    this.appServiciosService.appServiciosGet(null,'eq.'+this.appClienteLocalSelect.idcliente,'eq.'+this.appClienteLocalSelect.idlocal,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'idservicio,idestado,tiempoval,fechahorarecojo,costoentrega,app_cfinal(nombre)&idestado=eq.9 or idestado=eq.8 ').subscribe(data => {
       this.pedidosactivos=data;  
     
       for (const pedido of this.pedidosactivos) {

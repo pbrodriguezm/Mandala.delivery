@@ -8,3 +8,4 @@ export * from './appMetodopago';
 export * from './appServicios';
 export * from './appUnidad';
 export * from './appUsers';
+export * from './viewClientesFrecuentes';

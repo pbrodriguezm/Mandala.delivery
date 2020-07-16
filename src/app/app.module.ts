@@ -73,6 +73,7 @@ import { LoginComponent } from './components/login/login.component';
 import { SolicitarComponent } from './components/app-pedidos/solicitar/solicitar.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { HistorialComponent } from './components/app-pedidos/historial/historial.component';
+import { ViewClientesFrecuentesService } from './api/api';
 
 
 
@@ -153,6 +154,7 @@ import { HistorialComponent } from './components/app-pedidos/historial/historial
     AppServiciosService,
     AppUnidadService,
     AppUsersService,
+    ViewClientesFrecuentesService,
     IntrospectionService 
   ],
   bootstrap: [AppComponent]

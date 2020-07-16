@@ -20,4 +20,6 @@ export * from './appUsers.service';
 import { AppUsersService } from './appUsers.service';
 export * from './introspection.service';
 import { IntrospectionService } from './introspection.service';
-export const APIS = [AppCfinalService, AppClienteLocalesService, AppClientesService, AppDmarcacionesService, AppDriversService, AppEstadoService, AppMetodopagoService, AppServiciosService, AppUnidadService, AppUsersService, IntrospectionService];
+export * from './viewClientesFrecuentes.service';
+import { ViewClientesFrecuentesService } from './viewClientesFrecuentes.service';
+export const APIS = [AppCfinalService, AppClienteLocalesService, AppClientesService, AppDmarcacionesService, AppDriversService, AppEstadoService, AppMetodopagoService, AppServiciosService, AppUnidadService, AppUsersService, IntrospectionService, ViewClientesFrecuentesService];

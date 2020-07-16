@@ -1,17 +1,12 @@
+<h2>Clientes Frecuentes</h2>
 <mat-selection-list #shoes>
-    <mat-list-option>
-        Sra Juana - Calle America 3011, Miraflores
-    </mat-list-option>
+    <mat-list-option *ngFor="let clientefrecuente of listClientesFrecuentes">
 
-    <mat-list-option>
-        Don Julio - Urb pradera 207, Cayma
-    </mat-list-option>
+        <div class="d-flex bd-highlight">
+            <div class="p-2 flex-grow-1 bd-highlight"><a href="#" class="badge badge-primary">{{clientefrecuente.count}}</a> - {{clientefrecuente.nombre}} - {{clientefrecuente.direccion}} <span class="badge badge-pill badge-info"></span></div>
+            <div class="p-2 bd-highlight"><button (click)="guardarPedidoFrecuente(clientefrecuente.idcfinal)" mat-stroked-button>Pedir driver</button></div>
 
-    <mat-list-option>
-        Familia Gutierrez - Los Germenez 678 Cercado
-    </mat-list-option>
+        </div>
 
-    <mat-list-option>
-        Empresa Ramsa - Calla pizza SN, Paucarpata
     </mat-list-option>
 </mat-selection-list>
