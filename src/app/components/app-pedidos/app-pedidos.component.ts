@@ -9,6 +9,8 @@ import { MapsAPILoader } from '@agm/core';
 import { Observable, interval } from 'rxjs';
 declare var google: any;
 
+declare var $ : any;
+
 import {Md5} from 'ts-md5/dist/md5';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -85,13 +87,6 @@ export class AppPedidosComponent implements OnInit {
   
     }
   
-    request2 = 
-    {
-      
-      totalsuma: this.totalsuma,
-      tiempollegada: this.tiempollegada,
-      distancia: this.distancia
-    }
 
 
          //config mapa       
@@ -108,7 +103,9 @@ export class AppPedidosComponent implements OnInit {
 
   ngOnInit(): void {
       
-     
+    $('#exampleModal').modal('show', function(){
+      $('.modal-backdrop.in').css('opacity', '0.1')
+    });
    
       this.store = localStorage.getItem('store');
 

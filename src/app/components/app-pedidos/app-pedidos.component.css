@@ -227,3 +227,7 @@ agm-map {
     background-size: 24px;
     box-shadow: 0 0 12px #999999;
 }
+
+.modal-backdrop {
+    opacity: 0.5 !important;
+}
