@@ -34,7 +34,6 @@ export class SolicitarComponent implements OnInit {
 
 
   verificarCliente(){
-    console.log('hola');
     this.appCfinalService.appCfinalGet('eq.'+this.appCfinal.idcfinal).subscribe(data => {
       if(data.length>0){
         this.appCfinal = data[0];

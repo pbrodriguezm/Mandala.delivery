@@ -7,9 +7,9 @@
 
             <mat-form-field style="width: 100%" appearance="fill">
                 <mat-label>Celular de cliente</mat-label>
-                <input autocomplete="off" [(ngModel)]="appCfinal.idcfinal" name="idcfinal" matInput #input maxlength="10" placeholder="9xxxx" (focusout)="verificarCliente()" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                <input autocomplete="off" required [(ngModel)]="appCfinal.idcfinal" name="idcfinal" matInput #input maxlength="9" placeholder="9xxxx" (focusout)="verificarCliente()" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
                 <mat-icon matSuffix>phone</mat-icon>
-                <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+                <mat-hint align="end">{{input.value?.length || 0}}/9 dígitos obligatorios</mat-hint>
             </mat-form-field>
 
 
@@ -77,5 +77,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button color="primary" (click)="closeDialog();" cdkFocusInitial>Solicitar</button>
+    <button mat-button [disabled]="input.value?.length < 9" color="primary" (click)="closeDialog();" cdkFocusInitial>Solicitar</button>
 </mat-dialog-actions>
