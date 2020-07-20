@@ -42,7 +42,7 @@ export class HistorialComponent implements OnInit {
     let fechaFiltroini= this.fechaFiltro.getFullYear()+'-'+(this.fechaFiltro.getMonth()+1)+'-'+this.fechaFiltro.getDate()+' 00:00:00';
     let fechaFiltrofin= this.fechaFiltro.getFullYear()+'-'+(this.fechaFiltro.getMonth()+1)+'-'+(this.fechaFiltro.getDate()+1)+' 00:00:00';
     
-      this.appServiciosService.appServiciosGet(null,'eq.'+this.data.appClienteLocale.idcliente,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'gte.'+fechaFiltroini,'idservicio,costototal,distancia,tiempotext,fecharegistro,fechahorainicio,fechahorallegada, app_cfinal(nombre,direccion,telefono),app_estado(*)').subscribe( data => {
+      this.appServiciosService.appServiciosGet(null,'eq.'+this.data.appClienteLocale.idcliente,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'gte.'+fechaFiltroini,'idservicio,costototal,distancia,tiempotext,fecharegistro,fechahorainicio,fechahorallegada, app_cfinal(nombre,direccion,idcfinal),app_estado(*)').subscribe( data => {
 
         this.dataServicios= data;
         

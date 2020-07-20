@@ -463,7 +463,7 @@ guardarServicio(){
     this.toastr.clear();
     this.appServiciosService.appServiciosGet(null,'eq.'+this.appClienteLocalSelect.idcliente,'eq.'+this.appClienteLocalSelect.idlocal,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'idservicio,idestado,tiempoval,fechahorarecojo,costoentrega,app_cfinal(nombre)&idestado=eq.9 or idestado=eq.8 ').subscribe(data => {
       this.pedidosactivos=data;  
-      console.log(data);
+      
     
       for (const pedido of this.pedidosactivos) {
         if(pedido.idestado=='8'){
@@ -475,7 +475,6 @@ guardarServicio(){
             closeButton:true,
           });
         }
-        console.log(pedido.fechahorarecojo);
         if(pedido.idestado=='9'){
 
           let frecojo= new Date(pedido.fechahorarecojo);
