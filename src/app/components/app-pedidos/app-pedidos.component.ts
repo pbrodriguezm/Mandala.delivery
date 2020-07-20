@@ -463,6 +463,7 @@ guardarServicio(){
     this.toastr.clear();
     this.appServiciosService.appServiciosGet(null,'eq.'+this.appClienteLocalSelect.idcliente,'eq.'+this.appClienteLocalSelect.idlocal,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,'idservicio,idestado,tiempoval,fechahorarecojo,costoentrega,app_cfinal(nombre)&idestado=eq.9 or idestado=eq.8 ').subscribe(data => {
       this.pedidosactivos=data;  
+      console.log(data);
     
       for (const pedido of this.pedidosactivos) {
         if(pedido.idestado=='8'){
@@ -474,29 +475,15 @@ guardarServicio(){
             closeButton:true,
           });
         }
+        console.log(pedido.fechahorarecojo);
         if(pedido.idestado=='9'){
 
           let frecojo= new Date(pedido.fechahorarecojo);
           let horaactual = new Date(Date.now());
-
+         
           let resta = frecojo.getTime() - horaactual.getTime()
-          let tiempo = 'llegará en '+(Math.round(resta/ (1000*60)))+ ' min';
+          let tiempo = 'llegará a las '+frecojo.getHours()+':'+frecojo.getMinutes();
 
-          if((Math.round(resta/ (1000*60))) < 3){
-             tiempo = ', ya casí llegó.';
-          }
-
-          if((Math.round(resta/ (1000*60))) < 1){
-             tiempo = ', a pocos metros.';
-          }
-
-          if((Math.round(resta/ (1000*60))) < 0){
-             tiempo = ', en camino...';
-          }
-
-          if((Math.round(resta/ (1000*60))) > 60){
-             tiempo = ', demorará en llegar...';
-          }
 
 
 

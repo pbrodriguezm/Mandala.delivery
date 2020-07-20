@@ -50,6 +50,7 @@
                 <mat-select [(ngModel)]="data.appServicio.metodopago">
                     <mat-option value="EFEC" selected>Efectivo</mat-option>
                     <mat-option value="TARJ">Tarjeta</mat-option>
+                    <mat-option value="TRAN">Pagó cn transferencia</mat-option>
 
                 </mat-select>
 
@@ -59,9 +60,9 @@
 
         <div class="col-md-6">
             <mat-form-field style="width: 100%" appearance="fill">
-                <mat-label>Pagará con S/. </mat-label>
+                <mat-label>Costo de Producto</mat-label>
                 <input autocomplete="off" matInput placeholder="S/. __.__" [(ngModel)]="data.appServicio.drivercomentario">
-                <mat-hint>En caso de requerir vuelto</mat-hint>
+                <mat-hint style="color: fuchsia;">Monto de su producto vendido</mat-hint>
             </mat-form-field>
 
         </div>

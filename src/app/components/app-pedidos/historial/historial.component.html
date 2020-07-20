@@ -38,18 +38,24 @@
         <!-- Name Column -->
         <ng-container matColumnDef="cliente">
             <th mat-header-cell *matHeaderCellDef> Cliente </th>
-            <td mat-cell *matCellDef="let element"> {{element.app_cfinal.nombre}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.app_cfinal.nombre}} ({{element.app_cfinal.telefono}}) </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="direccion">
+            <th mat-header-cell *matHeaderCellDef> Cliente </th>
+            <td mat-cell *matCellDef="let element"> {{element.app_cfinal.direccion}} </td>
         </ng-container>
 
         <!-- Weight Column -->
-        <ng-container matColumnDef="distancia">
-            <th mat-header-cell *matHeaderCellDef> Distancia </th>
-            <td style="color: dimgray;" mat-cell *matCellDef="let element"> {{element.distancia | number:'1.2-2' }} km</td>
+        <ng-container matColumnDef="solicitado">
+            <th mat-header-cell *matHeaderCellDef> H. Solicitado </th>
+            <td style="color: dimgray;" mat-cell *matCellDef="let element"> {{element.fecharegistro | date:'shortTime' }}</td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="monto">
-            <th mat-header-cell *matHeaderCellDef> Monto </th>
+            <th mat-header-cell *matHeaderCellDef> Delivery </th>
             <td style="color: dimgray;" mat-cell *matCellDef="let element"> S/ {{element.costototal | number:'1.2-2'}} </td>
         </ng-container>
 
@@ -73,7 +79,7 @@
         <ng-container matColumnDef="acciones">
             <th mat-header-cell *matHeaderCellDef> </th>
             <td mat-cell *matCellDef="let element">
-                <button *ngIf="element.app_estado.idestado == 8" (click)="anularPedido(element)" type="button" class="btn btn-outline-danger btn-sm">Anular</button>
+                <button *ngIf="element.app_estado.idestado == 8 || element.app_estado.idestado == 9" (click)="anularPedido(element)" type="button" class="btn btn-outline-danger btn-sm">Anular</button>
 
                 <span *ngIf="element.app_estado.idestado == 9"><i class="fas fa-shipping-fast"></i></span>
                 <span *ngIf="element.app_estado.idestado == 6"><i class="fas fa-people-carry"></i></span>
