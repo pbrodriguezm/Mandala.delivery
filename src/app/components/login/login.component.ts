@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     let store = localStorage.getItem('store');
     if(store != undefined && store != null) {
-      console.log('si existe');
+
       this.router.navigate(['/store'])
     }
   

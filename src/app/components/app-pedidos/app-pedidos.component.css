@@ -37,6 +37,14 @@ agm-map {
     /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
+.toolbarNavNotif {
+    position: fixed;
+    bottom: 63px;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+}
+
 .material-icons.color_blue:hover {
     color: #F42DDF;
     cursor: pointer;

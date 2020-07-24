@@ -22,7 +22,7 @@ import PlaceResult = google.maps.places.PlaceResult;
 import { NgIf } from '@angular/common';
 import { callbackify } from 'util';
 import { ClientesComponent } from './clientes/clientes.component';
-import { AppClientesService, AppClienteLocalesService, AppServiciosService, AppCfinalService } from 'src/app/api/api';
+import { AppClientesService, AppClienteLocalesService, AppServiciosService, AppCfinalService, AppDriversService } from 'src/app/api/api';
 import { MatDialog } from '@angular/material/dialog';
 import { SolicitarComponent } from './solicitar/solicitar.component';
 import { HistorialComponent } from './historial/historial.component';
@@ -48,6 +48,7 @@ export class AppPedidosComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     public dialog: MatDialog,
+    protected appDriversService:AppDriversService,
     private toastr: ToastrService
     ) {}
   
@@ -71,7 +72,7 @@ export class AppPedidosComponent implements OnInit {
   appClienteLocales: AppClienteLocales[]=[];
   appClienteLocalSelect:AppClienteLocales={};
   marketsList:any[]=[];
-
+  cantidadDriverDisponibles=4;
   tiempollegada='';
   
   infowindow = new google.maps.InfoWindow();
@@ -154,12 +155,9 @@ export class AppPedidosComponent implements OnInit {
 
         interval(7000).subscribe(x =>  {
           this.listaPedidos();
+          this.estadoDrivers();
         })
         
-
-        
-
-
         this.appClienteLocales=data;
 
         for (const local of data) {
@@ -168,6 +166,19 @@ export class AppPedidosComponent implements OnInit {
           this.createMarker(start, local.nombre, false,'origin.png');
         }
     
+      })
+    }
+
+    estadoDrivers(){
+      
+
+      this.appDriversService.appDriversGet(null,null,null,null,null,null,null,'neq.13').subscribe(data => {
+        this.cantidadDriverDisponibles=0;
+        for (const driver of data) {
+          if(driver.idestadoservicio == 10 || driver.idestadoservicio == 5){
+            this.cantidadDriverDisponibles++;
+          }
+        }
       })
     }
 
@@ -214,8 +225,7 @@ export class AppPedidosComponent implements OnInit {
       };
 
 
-
-
+    
 
       this.autocomplete = new google.maps.places.Autocomplete(input,options);
       this.autocomplete.setComponentRestrictions({'country': ['pe']});
@@ -242,6 +252,8 @@ export class AppPedidosComponent implements OnInit {
           this.createMarker(end, 'Cliente Destino', true,'destination.png');
           
           this.directionsDisplay.setMap(this.map);    
+
+
         });
   
   
@@ -267,7 +279,7 @@ export class AppPedidosComponent implements OnInit {
       });
 
 
-  
+
   
 }
 

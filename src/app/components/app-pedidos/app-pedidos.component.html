@@ -61,6 +61,25 @@
     <span class="badge badge-light">{{directionsDisplay.directions.routes[0].legs[0].distance.value/1000 | number:'1.2-2'}} km</span>
   </button>
 
+<div *ngIf="cantidadDriverDisponibles == 1" class="d-flex justify-content-center">
+    <div class="alert alert-warning toolbarNavNotif" style="border-color: orangered;" role="alert">
+        <i class="fas fa-motorcycle"></i>&nbsp;&nbsp; Drivers disponibles.
+    </div>
+</div>
+
+<div *ngIf="cantidadDriverDisponibles > 1" class="d-flex justify-content-center">
+    <div class="alert alert-success toolbarNavNotif" style="border-color: green;" role="alert">
+        <i class="fas fa-motorcycle"></i>&nbsp;&nbsp; Drivers disponibles.
+    </div>
+</div>
+
+<div *ngIf="cantidadDriverDisponibles < 1" class="d-flex justify-content-center">
+    <div class="alert alert-danger toolbarNavNotif" style="border-color: red;" role="alert">
+        <i class="fas fa-motorcycle"></i>&nbsp;&nbsp; Drivers no disponibles por el momento.
+    </div>
+</div>
+
+
 
 
 <mat-toolbar class="toolbarNav">
