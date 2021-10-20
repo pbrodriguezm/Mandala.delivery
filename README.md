@@ -1,6 +1,6 @@
 # MandalaApp
 [Angular CLI](https://github.com/angular/angular-cli) version 9.1.9.
-[MANDALA]
+[DELIVERY-APP] [RESTAURANTES] 
 
 <img src="https://i.ibb.co/q1yxY2v/PROYECTO1.jpg" />
 #### Funcionalidades
